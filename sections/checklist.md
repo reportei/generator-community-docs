@@ -43,8 +43,6 @@ Some APIs provide webhooks for tracking events such as:
 - Instagram story posts
 - New opportunities in a CRM
 
-As of this document's creation, only RD Station has implemented webhook reception and data storage. However, if an API offers useful webhooks, they can be received without issue using the `receiver`.
-
 ## Does It Require Monitoring?
 Some data cannot be retrieved retroactively, such as Instagram followers. In such cases, daily monitoring is required to maintain a historical record.
 
