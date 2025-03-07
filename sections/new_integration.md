@@ -21,7 +21,7 @@ npm run generate:integration -- IntegrationName
 
 This will generate a foundation with the necessary files to build the network (similar to the `php artisan make:` command in Laravel).
 
-![alt text](./assets-integration/image.png)
+![alt text](./images/image-integration.png)
 
 ## Simulating Pinterest Integration
 
@@ -34,7 +34,7 @@ For more details on the supported authentication types and the end-to-end authen
 
 Authentication for the new integration - [Authentication](./authentication.mdd)
 
-![alt text](./assets-integration/image-1.png)
+![alt text](./images/image-integration-1.png)
 
 ### `{integration}.dto.js`
 Acts as a proxy between `sources-controller.js` and the integration's main file (`{integration}.js`).
@@ -43,9 +43,9 @@ It receives request data and adapts it in a way that the main file can use.
 ### `{integration}.js`
 This class serves as the main file for building the network. All business logic, metric formatting, and API responses should be contained within this class. It must implement the `getSourceData()` method, which serves as the entry point for the class and returns the formatted metrics according to the standard return format.
 
-Standard return format - [Standard Return Format](./return-format.md)
+Standard return format - [Standard Return Format](./return_format.md)
 
-![alt text](./assets-integration/image-2.png)
+![alt text](./images/image-integration-2.png)
 
 ### `{integration}-request.js`
 This file should contain all methods related to API requests, such as token refresh and request construction. A utility class, `ApiHandler`, is already imported to handle requests, pagination, and retries.
@@ -54,7 +54,7 @@ This file should contain all methods related to API requests, such as token refr
 This directory is a suggested location for network-specific utilities and should not contain any core logic.
 For example, in the Pinterest integration, it stores pre-calculated metrics and a function that converts currency to the network-specific format.
 
-![alt text](./assets-integration/image-3.png)
+![alt text](./images/image-integration-3.png)
 
 ## Automatic Modifications
 
@@ -74,7 +74,7 @@ Metric collection involves making API requests. As mentioned earlier, this logic
 2. Request construction
 3. Request execution
 
-![alt text](./assets-integration/image-4.png)
+![alt text](./images/image-integration-4.png)
 
 ### Defining "Pivots"
 
@@ -90,11 +90,11 @@ Establishing this relationship is crucial as it helps organize requests accordin
 
 For example, in the Pinterest integration, a request constructor (`buildRequest`) groups all widgets by dimension and makes requests applicable to all metrics sharing that dimension. Each dimension corresponds to an endpoint and is also heavily used in formatting.
 
-![alt text](./assets-integration/image-5.png)
+![alt text](./images/image-integration-5.png)
 
 The final result is a `Map` associating each dimension with its API response.
 
-![alt text](./assets-integration/image-6.png)
+![alt text](./images/image-integration-6.png)
 
 ### Recommended Approach
 
@@ -102,7 +102,7 @@ While this scenario assumes a well-documented API with clearly separated endpoin
 
 ## Formatting
 
-Once all necessary metric data has been retrieved, methods must be created to format API responses according to each metric. The final format should always be a table, in the [standard format](./return-format.md), ensuring the network is unaware of widget types (e.g., datatable, chart, number).
+Once all necessary metric data has been retrieved, methods must be created to format API responses according to each metric. The final format should always be a table, in the [standard format](./return_format.md), ensuring the network is unaware of widget types (e.g., datatable, chart, number).
 
 ### Formatting Challenges
 
@@ -114,15 +114,15 @@ Assuming the relationship between dimensions and API responses is established, t
 
 1. Mapping widgets (`metrics`) by sending the widget and API response to another function.
 
-![alt text](./assets-integration/image-7.png)
+![alt text](./images/image-integration-7.png)
 
 2. Creating a default response structure (`defaultResponse`).
 
-![alt text](./assets-integration/image-8.png)
+![alt text](./images/image-integration-8.png)
 
 3. Obtaining the API response for the widget’s dimension (`responseValue`).
 
-![alt text](./assets-integration/image-9.png)
+![alt text](./images/image-integration-9.png)
 
 4. Invoking a function to handle responses for that dimension.
 
@@ -137,15 +137,15 @@ The formatting of an API response using the "boards" dimension (in a `switch-cas
 
 If the response contains images (`thumbnail`), the first value in the row should include an object with `text`, `image`, and `url`. This is necessary whenever tables with images are constructed.
 
-![alt text](./assets-integration/image-10.png)
+![alt text](./images/image-integration-10.png)
 
 ### Final Output Format
 
 The final output of any formatting function must be an object following the standard format:
 
-Standard Return Format - [Standard Return Format](./return-format.md)
+Standard Return Format - [Standard Return Format](./return_format.md)
 
-![alt text](./assets-integration/image-11.png)
+![alt text](./images/image-integration-11.png)
 
 With this, the last stage of network addition is complete. The methods explained in the lifecycle will handle the final adjustments automatically. Be mindful of errors at this stage; after formatting the objects, they are validated by `formatter-handler`.
 

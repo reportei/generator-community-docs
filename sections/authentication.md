@@ -8,9 +8,9 @@ Most APIs use two authentication strategies: OAuth and Custom Credentials, both 
 
 There are three endpoints responsible for handling authentication:
 
-![alt text](./assets-auth/image.png)
+![alt text](./images/image-auth.png)
 
-![alt text](./assets-auth/image-1.png)
+![alt text](./images/image-auth-1.png)
 
 ### Protected Endpoints
 
@@ -20,20 +20,20 @@ This is the entry point for any authentication process, responsible for initiati
 #### `/auth/callback/:source`
 Used only in the OAuth flow, this endpoint receives the callback from external providers.
 
-![alt text](./assets-auth/image-2.png)
+![alt text](./images/image-auth-2.png)
 
 ### Unprotected Endpoint
 
 #### `/auth/data/:state`
 This endpoint retrieves session data stored in Redis. Whenever this endpoint is called, the data is deleted from Redis. It is specifically used to recover credentials or accounts after authentication.
 
-![alt text](./assets-auth/image-3.png)
+![alt text](./images/image-auth-3.png)
 
 ## Architecture
 
 Since all authentication endpoints invoke the `integration-controller`, the process begins here. This controller is responsible for obtaining request data and invoking the `integrationService`, which contains the core authentication logic.
 
-![alt text](./assets-auth/image-4.png)
+![alt text](./images/image-auth-4.png)
 
 ### `integration-controller.js`
 Manages incoming requests and delegates authentication logic to the `integrationService`.
@@ -41,13 +41,13 @@ Manages incoming requests and delegates authentication logic to the `integration
 ### `integration-service.js`
 Each network or service being integrated must have its own service file to encapsulate authentication logic. These services must implement required input and output methods.
 
-![alt text](./assets-auth/image-5.png)
+![alt text](./images/image-auth-5.png)
 
 The `integration-service` maintains a collection of all integrated authentication services. Some endpoints require the `:source` query parameter to instantiate the correct authentication service.
 
 For example, a request to `/auth/facebook` will instantiate `FacebookService`, which contains the specific authentication logic for Facebook.
 
-![alt text](./assets-auth/image-6.png)
+![alt text](./images/image-auth-6.png)
 
 ## Authentication Process
 
@@ -61,7 +61,7 @@ This initial method requires the following parameters:
 
 After validating the parameters, the network service is instantiated. Before calling `authenticate` inside the service, the received parameters are saved in Redis with a unique `state`, which acts as a session token. Any authentication-related information stored in Redis can be retrieved using this `state`.
 
-![alt text](./assets-auth/image-7.png)
+![alt text](./images/image-auth-7.png)
 
 ### `handleAuthentication`
 Triggered when a request is received at `/auth/callback/:source`. After the authentication process is completed by the external provider, a callback is received at this endpoint containing the `state`. This allows retrieving the previously stored authentication data from Redis.
@@ -74,12 +74,12 @@ Once the network service method is invoked, it must return:
 
 These values are saved in Redis for later retrieval using the `state`. Finally, the user is redirected to the external URL with the `state` appended, enabling the external app to fetch authentication data.
 
-![alt text](./assets-auth/image-8.png)
+![alt text](./images/image-auth-8.png)
 
 ### `getAuthData`
 Called when accessing `/auth/data/:state`. This function retrieves stored authentication data from Redis, deletes it, and returns it as a response.
 
-![alt text](./assets-auth/image-9.png)
+![alt text](./images/image-auth-9.png)
 
 ## OAuth Integration
 
@@ -95,7 +95,7 @@ In the constructor, add service credentials and set `redirectUri` to `/auth/call
 ### `authenticate`
 This method constructs the OAuth URL, redirecting the user to the external provider’s authentication page.
 
-![alt text](./assets-auth/image-10.png)
+![alt text](./images/image-auth-10.png)
 
 #### How to Obtain the OAuth URL for Each Network?
 Most API documentation explains the required OAuth URL and necessary query parameters (e.g., scopes, `client_id`, secrets, etc.).
@@ -103,7 +103,7 @@ Most API documentation explains the required OAuth URL and necessary query param
 ### `handleAuthentication`
 This function automatically receives the callback after external authentication is completed. It must implement logic to retrieve accounts, access tokens, and refresh tokens from the provider.
 
-![alt text](./assets-auth/image-11.png)
+![alt text](./images/image-auth-11.png)
 
 It must return an object containing:
 
@@ -125,13 +125,13 @@ For services requiring custom credentials, the integration process is simpler. A
 
 The generator does not store API tokens or request credentials from users; this responsibility falls on the external service interacting with the generator.
 
-![alt text](./assets-auth/image-12.png)
+![alt text](./images/image-auth-12.png)
 
 ### Custom Credentials Flow
 
 Within `authenticate`, specify the necessary fields for integration and call `storeRequiredFields`, which updates Redis with the required fields.
 
-![alt text](./assets-auth/image-13.png)
+![alt text](./images/image-auth-13.png)
 
 The `handleAuthentication` method can be left empty, as there is no callback in these cases.
 

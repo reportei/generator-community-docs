@@ -1,2 +1,20 @@
-# generator-community-docs
-Documentation for generator-community
+# Adding a New Integration to Reportei
+
+## Getting Started
+
+Now that your environment is set up, you can begin integrating a new network. If you haven't set up the environment yet, follow the instructions in the **[original repository](link)** where we configured the setup.
+
+## **Start Here**
+To begin the integration process, refer to the **`new_integration.md`** file, which provides a step-by-step guide for implementing a new network in Reportei.
+
+## **Postman Collection**
+Download the **Postman collection** [here](./sections/collection/Generator%20Community.postman_collection.json) to test API requests easily during development.
+
+## **Testing the Integration**
+
+- Use **`/source`** with the created [payload](./sections/metrics.md) to test the developed integration and ensure the metric formatting process works correctly.
+
+- Use **`/auth`** to test the authentication process for the integration.
+
+Following these steps ensures that your integration is properly configured, authenticated, and tested within the Reportei system.
+
