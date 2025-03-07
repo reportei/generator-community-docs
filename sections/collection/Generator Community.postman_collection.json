@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "4ae9975f-9d0a-415b-8277-f0bd9886e61a",
+		"name": "Generator Community",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17991087",
+		"_collection_link": "https://lively-robot-437727.postman.co/workspace/Reportei~64c450b7-f09b-43ce-a677-3d3f54a0d5b6/collection/17991087-4ae9975f-9d0a-415b-8277-f0bd9886e61a?action=share&source=collection_link&creator=17991087"
+	},
+	"item": [
+		{
+			"name": "{your-network} Get Data",
+			"item": [
+				{
+					"name": "/source",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Access-Token",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "X-Refresh-Token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"awaitForAllMetrics\": true,\r\n    \"sourceName\": \"your-network\",\r\n    \"sourceId\": \"your-network-id\",\r\n    \"start\": \"YYYY-MM-DD\",\r\n    \"end\": \"YYYY-MM-DD\",\r\n    \"comparison_start\": \"YYYY-MM-DD\",\r\n    \"comparison_end\": \"YYYY-MM-DD\",\r\n    \"metrics\": [\r\n        //your payload\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/source",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"source"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "{your-network} Auth",
+			"item": [
+				{
+					"name": "/auth Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/auth/data/:state",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"data",
+								":state"
+							],
+							"variable": [
+								{
+									"key": "state",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/auth Url",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/v4/auth/:source?externalUserId=1&externalRedirectUrl=https://example.com",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"v4",
+								"auth",
+								":source"
+							],
+							"query": [
+								{
+									"key": "externalUserId",
+									"value": "1"
+								},
+								{
+									"key": "externalRedirectUrl",
+									"value": "https://example.com"
+								}
+							],
+							"variable": [
+								{
+									"key": "source",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/auth OAuth Callback",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/v4/auth/callback/instagram?code=&state=",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"v4",
+								"auth",
+								"callback",
+								"instagram"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": ""
+								},
+								{
+									"key": "state",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "R1eDKG+kfcHyWtMjEYTlS2DqyestRP3sX+NMpOlnL9Jeww",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:8080/v4",
+			"type": "string"
+		}
+	]
+}
