@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Now that your environment is set up, you can begin integrating a new network. If you haven't set up the environment yet, follow the instructions in the **[original repository](link)** where we configured the setup.
+Now that your environment is set up, you can begin integrating a new network. If you haven't set up the environment yet, follow the instructions in the **[original repository](https://github.com/reportei/generator-community)** where we configured the setup.
 
 ## **Start Here**
 
