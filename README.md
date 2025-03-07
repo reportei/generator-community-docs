@@ -5,6 +5,16 @@
 Now that your environment is set up, you can begin integrating a new network. If you haven't set up the environment yet, follow the instructions in the **[original repository](link)** where we configured the setup.
 
 ## **Start Here**
+
+- [Checklist](./sections/checklist.md): Review the essential considerations before starting the integration process.
+
+- [Payloads](./sections/metrics.md): Understand the payload structure required for metric formatting and data processing.
+
+- [Authentication](./sections/authentication.md): Follow the authentication process for integrating with external APIs.
+
+- [New Integration](./sections/new_integration.md): Step-by-step guide to implementing a new network in Reportei.
+
+## **Start Here**
 To begin the integration process, refer to the **`new_integration.md`** file, which provides a step-by-step guide for implementing a new network in Reportei.
 
 ## **Postman Collection**
