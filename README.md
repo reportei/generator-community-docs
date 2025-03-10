@@ -14,9 +14,6 @@ Now that your environment is set up, you can begin integrating a new network. If
 
 - [Authentication](./sections/authentication.md): Follow the authentication process for integrating with external APIs.
 
-## **Start Here**
-To begin the integration process, refer to the [New Integration](./sections/new_integration.md) file, which provides a step-by-step guide for implementing a new network in Reportei.
-
 ## **Postman Collection**
 Download the **Postman collection** [here](./sections/collection/Generator%20Community.postman_collection.json) to test API requests easily during development.
 
