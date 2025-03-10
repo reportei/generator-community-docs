@@ -8,7 +8,7 @@ Now that your environment is set up, you can begin integrating a new network. If
 
 - [Checklist](./sections/checklist.md): Review the essential considerations before starting the integration process.
 
-- - [New Integration](./sections/new_integration.md): Step-by-step guide to implementing a new network in Reportei.
+- [New Integration](./sections/new_integration.md): Step-by-step guide to implementing a new network in Reportei.
 
 - [Payloads](./sections/metrics.md): Understand the payload structure required for metric formatting and data processing.
 
