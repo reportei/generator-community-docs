@@ -66,7 +66,7 @@ The authentication process involves obtaining authorization tokens and accounts 
 
 It is important to note that authentication only serves to save account credentials in the product interacting with the generator (e.g., Reportei, Sync). Network tokens will be forwarded to the generator via headers (prefix `X-`, e.g., `X-Access-Token`).
 
-## Metric Collection
+## Collecting metrics
 
 Metric collection involves making API requests. As mentioned earlier, this logic should be implemented inside `{integration}-request.js`. This process may vary depending on the API, but it generally follows these steps:
 
