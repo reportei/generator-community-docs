@@ -26,3 +26,33 @@ Download the **Postman collection** [here](./sections/collection/Generator%20Com
 
 Following these steps ensures that your integration is properly configured, authenticated, and tested within the Reportei system.
 
+## **Debugging and Troubleshooting**
+
+In order to see the container logs for the node service, you can run the following command:
+
+```sh
+docker logs -f reportei_generator
+```
+
+Or you can open the container logs in the Docker Desktop UI.
+
+You can also access the container with the following command:
+
+```sh
+docker exec -it reportei_generator /bin/bash
+```
+And then
+
+```sh
+pm2 logs
+```
+
+If you wish to run the service locally, you just need to CD into the `generator-community` directory and run the following commands:
+
+```sh
+npm install
+npm run start:debug
+```
+
+Make sure the port 8080 on your machine is free to use.
+
