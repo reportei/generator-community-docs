@@ -5,10 +5,11 @@
 Now that your environment is set up, you can begin integrating a new network. If you haven't set up the environment yet, follow the instructions in the **[original repository](https://github.com/reportei/generator-community)** where we configured the setup.
 
 ## **Start Here**
+- [Tutorial](./sections/practical_example.md) Practial example showing step-by-step how to develop an integration
 
 - [Checklist](./sections/checklist.md): Review the essential considerations before starting the integration process.
 
-- [New Integration](./sections/new_integration.md): Step-by-step guide to implementing a new network in Reportei.
+- [New Integration](./sections/new_integration.md): Describes each file and each process of developing a new integration.
 
 - [Payloads](./sections/metrics.md): Understand the payload structure required for metric formatting and data processing.
 
