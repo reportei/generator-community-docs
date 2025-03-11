@@ -22,6 +22,7 @@ Inside `src/payloads/`, create a file named `swapi-widgets.json` with the follow
 {
   "metrics": [
     {
+      "id": "a52f5a1f-e4e9-4eb3-88f0-33695823692f",
       "reference_key": "swapi:total_characters",
       "component": "number_v1",
       "dimensions": [
@@ -32,6 +33,7 @@ Inside `src/payloads/`, create a file named `swapi-widgets.json` with the follow
       ]
     },
     {
+      "id": "8dce6dd2-69b4-44c7-876a-83d9db717953",
       "reference_key": "swapi:starships_by_manufacturer",
       "component": "datatable_v1",
       "dimensions": [
