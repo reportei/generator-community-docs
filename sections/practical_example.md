@@ -10,7 +10,7 @@ The metrics we are going to have are:
 
 The code for the following tutorial is complete in the branch [Practical-Example](https://github.com/reportei/generator-community/tree/example/star-wars-api).
 
-For more detailed insights for each file and step of the process, check [New Integration](./sections/new_integration.md).
+It is very important that you know the purpose of each file and step of the process, please refer to [New Integration](./sections/new_integration.md).
 
 
 ## 1. Configuring the metrics
