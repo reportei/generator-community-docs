@@ -259,7 +259,8 @@ Here we build the  requests that should be made using the widgets dimensions.
 
 If you hit `/source` endpoit right now you should get this response:
 
-![Example logs](./images//images/image-example-example.png)
+![Example logs](./images/image-example-3.png)
+
 
 
 ### 3.2 Requesting metrics
@@ -316,8 +317,7 @@ async function request(widgets) {
 ```
 
 Now if you hit `/source` endpoit right now you should get this log containing the data foreach dimension:
-
-![Responses Map](./images/image-example-1.png)
+![Response Map](./images/image-example-5.png)
 
 During these tests in postman you will receive the following response:
 
