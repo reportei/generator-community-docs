@@ -6,6 +6,8 @@ The metrics we are going to have are:
 - Total Characters in the Database (Number Metric)
 - Starships by Manufacturer (Table Metric)
 
+The name of the integration on our codebase will be Swapi (swapi).
+
 **Important**
 
 The code for the following tutorial is complete in the branch [Practical-Example](https://github.com/reportei/generator-community/tree/example/star-wars-api).
