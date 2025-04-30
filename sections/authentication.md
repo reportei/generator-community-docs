@@ -253,7 +253,7 @@ class ActiveCampaignService {
 
 The `requiredFields` and `instructions` are used by the front-end to render a modal like the example below:
 
-<div style="max-width: 400px; margin-bottom: 16px;">
+<div style="max-width: 200px; margin-bottom: 16px;">
   <img src="./images/image-auth-14.png" alt="ActiveCampaign Modal Example" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" />
 </div>
 
