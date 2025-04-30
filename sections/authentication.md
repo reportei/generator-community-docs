@@ -93,7 +93,7 @@ For example, integrating with Facebook:
 In the constructor, add service credentials and set `redirectUri` to `/auth/callback/{network_name}`.
 
 ### `authenticate`
-This method constructs the OAuth URL, redirecting the user to the external provider’s authentication page.
+This method constructs the OAuth URL, redirecting the user to the external provider's authentication page.
 
 ![alt text](./images/image-auth-10.png)
 
@@ -133,7 +133,129 @@ Within `authenticate`, specify the necessary fields for integration and call `st
 
 ![alt text](./images/image-auth-13.png)
 
+After specifying the fields, you need to build the modal instructions, which will
+
 The `handleAuthentication` method can be left empty, as there is no callback in these cases.
+
+#### Example: ActiveCampaignService
+
+Below is an example of a service using custom credentials for ActiveCampaign integration. This service defines the required fields and instructions, which are used to dynamically build the authentication modal on the front-end:
+
+```js
+const get = require("lodash.get");
+const { ACTIVE_CAMPAIGN_API_VERSION } = require("../../configs");
+const { storeRequiredFields } = require("./required-fields")
+const axios = require("axios")
+
+class ActiveCampaignService {
+  constructor() {}
+
+  async authenticate(req, res, state = null) {
+    const requiredFields = ["apiUrl", "apiKey", "accountName"];
+    const externalRedirectUrl = await storeRequiredFields(state, requiredFields,  ActiveCampaignService.instructions)
+    res.status(200).send(`${externalRedirectUrl}?state=${state}`)
+  }
+
+  async handleAuthentication(req, res) {
+    return
+  }
+
+  static instructions = {
+    source: "active_campaign",
+    inputs: [
+      {
+        apiUrl: {
+          id: "apiUrl",
+          label: "URL",
+          type: "text",
+          placeholder: "https://yourstore.com",
+          references: "source_token"
+        }
+      },
+      {
+        apiKey: {
+          id: "apiKey",
+          label: "Key",
+          type: "text",
+          placeholder: "Key",
+          references: "source_id"
+        }
+      },
+      {
+        accountName: {
+          id: "accountName",
+          label: "Account name",
+          type: "text",
+          placeholder: "Name",
+          references: "source_name"
+        }
+      }
+    ],
+    description: [
+      {
+        type: "description",
+        content: [
+          { type: "bold", value: "ActiveCampaign" },
+          { type: "text", value: " is a Customer Experience Automation platform that has tools such as email marketing, marketing automation, and CRM." },
+        ]
+      },
+      {
+        type: "description",
+        content: [
+          { type: "text", value: "To integrate with ActiveCampaign, follow the steps below:" }
+        ]
+      }
+    ],
+    instructions: [
+      {
+        type: "step",
+        step_number: 1,
+        content: [
+          { type: "text", value: "Log in to your " },
+          { type: "link", value: "ActiveCampaign", url: "https://www.activecampaign.com/br/login" },
+          { type: "text", value: " account and click on " },
+          { type: "bold", value: "Settings" },
+          { type: "text", value: " in the side menu. Then click on the " },
+          { type: "bold", value: "Developer" },
+          { type: "text", value: " option." }
+        ]
+      },
+      {
+        type: "step",
+        step_number: 2,
+        content: [
+          { type: "text", value: "In this option, a block " },
+          { type: "bold", value: "\"Access to API\"" },
+          { type: "text", value: " will appear. Return to Reportei, and " },
+          { type: "bold", value: "copy and paste" },
+          { type: "text", value: " the " },
+          { type: "bold", value: "URL" },
+          { type: "text", value: " and " },
+          { type: "bold", value: "key" },
+          { type: "text", value: " into the fields indicated below." }
+        ]
+      },
+      {
+        type: "step",
+        step_number: 3,
+        content: [
+          { type: "text", value: "Finally, define below the name that will " },
+          { type: "bold", value: "identify" },
+          { type: "text", value: " this integration and that " },
+          { type: "bold", value: "will appear in your ActiveCampaign reports" },
+          { type: "text", value: " on Reportei." }
+        ]
+      }
+    ]
+  };
+}
+```
+
+The `requiredFields` and `instructions` are used by the front-end to render a modal like the example below:
+
+![ActiveCampaign Modal Example](./images/image-auth-14.png)
+
+The user is guided step-by-step to obtain and input the necessary credentials, ensuring a smooth integration process.
 
 ### Fetching Authentication Data
 
