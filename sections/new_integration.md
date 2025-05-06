@@ -34,8 +34,6 @@ For more details on the supported authentication types and the end-to-end authen
 
 Authentication for the new integration - [Authentication](./authentication.mdd)
 
-![alt text](./images/image-integration-1.png)
-
 ### `{integration}.dto.js`
 Acts as a proxy between `sources-controller.js` and the integration's main file (`{integration}.js`).
 It receives request data and adapts it in a way that the main file can use.
